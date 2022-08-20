@@ -1,48 +1,57 @@
 package com.example.recyclerview;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import com.example.recyclerview.Adapter.CategoryAdapter;
+import com.example.recyclerview.Entity.Book;
+import com.example.recyclerview.Entity.Category;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView rcvUser;
-    private UserAdapter mUserAdapter;
+    private RecyclerView rcvCategory;
+    private CategoryAdapter categoryAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rcvUser = findViewById(R.id.rcv_user);
-        mUserAdapter = new UserAdapter(this);
+        rcvCategory = findViewById(R.id.rcv_category);
+        categoryAdapter = new CategoryAdapter(this);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-        rcvUser.setLayoutManager(gridLayoutManager);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        rcvCategory.setLayoutManager(linearLayoutManager);
 
-        mUserAdapter.setData(getListUser());
-        rcvUser.setAdapter(mUserAdapter);
+        categoryAdapter.setData(getListCategory());
+        rcvCategory.setAdapter(categoryAdapter);
+
     }
-    private List<User> getListUser() {
-        List<User> list = new ArrayList<>();
-        list.add(new User(R.drawable.image1, "user1"));
-        list.add(new User(R.drawable.image2, "user2"));
-        list.add(new User(R.drawable.image3, "user3"));
-        list.add(new User(R.drawable.image4, "user4"));
 
-        list.add(new User(R.drawable.image1, "user1"));
-        list.add(new User(R.drawable.image2, "user2"));
-        list.add(new User(R.drawable.image3, "user3"));
-        list.add(new User(R.drawable.image4, "user4"));
+    private List<Category> getListCategory() {
+        List<Category> listCategory = new ArrayList<>();
 
-        list.add(new User(R.drawable.image1, "user1"));
-        list.add(new User(R.drawable.image2, "user2"));
-        list.add(new User(R.drawable.image3, "user3"));
-        list.add(new User(R.drawable.image4, "user4"));
+        List<Book> listBook = new ArrayList<>();
+        listBook.add(new Book(R.drawable.image1, "Book 1"));
+        listBook.add(new Book(R.drawable.image2, "Book 2"));
+        listBook.add(new Book(R.drawable.image3, "Book 3"));
+        listBook.add(new Book(R.drawable.image4, "Book 4"));
 
-        return list;
+        listBook.add(new Book(R.drawable.image1, "Book 1"));
+        listBook.add(new Book(R.drawable.image2, "Book 2"));
+        listBook.add(new Book(R.drawable.image3, "Book 3"));
+        listBook.add(new Book(R.drawable.image4, "Book 4"));
+
+        listCategory.add(new Category("Category 1", listBook));
+        listCategory.add(new Category("Category 2", listBook));
+        listCategory.add(new Category("Category 3", listBook));
+        listCategory.add(new Category("Category 4", listBook));
+
+        return listCategory;
     }
 }
